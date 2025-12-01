@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCPL Digital Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 12px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .library-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .intro-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .intro-box p {
+            margin-bottom: 15px;
+        }
+        
+        .intro-box ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box ol li {
+            margin-bottom: 8px;
+        }
+        
+        .intro-box ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .intro-box ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .intro-box ul li:before {
+            content: "📱";
+            position: absolute;
+            left: 0;
+        }
+        
+        .category {
+            margin-bottom: 40px;
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-header h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .resource-list {
+            list-style: none;
+        }
+        
+        .resource-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .resource-name {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .resource-description {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #856404;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+            color: #666;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .resource-item:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .category-header h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="library-badge">HARRIS COUNTY PUBLIC LIBRARY</div>
+        <h1>Your Digital Library</h1>
+        <p class="subtitle">Free Online Resources for Every Interest</p>
+    </header>
+
+    <div class="intro-box">
+        <h3>🔑 Getting Started</h3>
+        <p>Your library card unlocks over 85 premium online resources—all completely free. Here's what you need:</p>
+        <ol>
+            <li><strong>Your Library Card Number</strong> (14 digits on the back of your card)</li>
+            <li><strong>Your PIN</strong></li>
+        </ol>
+        
+        <h3 style="margin-top: 25px;">Essential Apps to Download</h3>
+        <p>For the best mobile experience, download these free apps and log in with your library card:</p>
+        <ul>
+            <li><strong>Libby:</strong> eBooks, audiobooks, and magazines</li>
+            <li><strong>Kanopy:</strong> Streaming movies and documentaries</li>
+            <li><strong>LinkedIn Learning:</strong> Professional video courses</li>
+        </ul>
+    </div>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🍿</span>
+            <h2>Entertainment & Leisure</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">Kanopy</span>
+                <p class="resource-description">Stream classic cinema, indie films, and award-winning documentaries. Includes the Great Courses and Kanopy Kids.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Libby (by OverDrive)</span>
+                <p class="resource-description">Borrow thousands of popular eBooks, digital audiobooks, and comic books. Instant access, no waiting for popular titles.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Freegal Music</span>
+                <p class="resource-description">Stream unlimited music from Sony's catalog and download up to 3 songs per week to keep forever.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Flipster</span>
+                <p class="resource-description">Read digital editions of popular magazines including <em>People</em>, <em>Time</em>, <em>Sports Illustrated</em>, and more.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">TumbleBooks</span>
+                <p class="resource-description">Animated, talking picture books and read-alongs perfect for young children learning to read.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🛠️</span>
+            <h2>Practical Life Skills & DIY</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">Chilton Library</span>
+                <p class="resource-description">Detailed automotive repair guides, wiring diagrams, and maintenance schedules for most vehicles. The digital version of the trusted Chilton manuals.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Gale Legal Forms</span>
+                <p class="resource-description">Access and print state-specific legal forms for wills, power of attorney, leases, and more. Includes helpful legal guides.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Gale Health & Wellness</span>
+                <p class="resource-description">Trusted, authoritative consumer health information on diseases, conditions, treatments, and medications.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Craftsy (via Libby)</span>
+                <p class="resource-description">Expert video tutorials for baking, knitting, quilting, sewing, and other crafts.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🚀</span>
+            <h2>Career, Business & Finance</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">LinkedIn Learning</span>
+                <p class="resource-description">Over 16,000 expert-led video courses on business, technology, creative skills, and professional development. Learn software, leadership, and more.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">LearningExpress Job & Career Accelerator</span>
+                <p class="resource-description">Build professional resumes, practice interviewing skills, search for jobs, and develop workplace skills.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Gale Business: Entrepreneurship</span>
+                <p class="resource-description">Resources including sample business plans, financial templates, and guides to help launch and grow a small business.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Morningstar Investment Research</span>
+                <p class="resource-description">Independent financial data and analysis on stocks, mutual funds, and ETFs to support investment decisions.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🎓</span>
+            <h2>Student Homework Help & Research</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">Gale In Context (Elementary/Middle/High School)</span>
+                <p class="resource-description">Age-appropriate databases with articles, videos, images, and primary sources perfect for school projects and reports.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">LearningExpress Test Prep</span>
+                <p class="resource-description">Practice tests and tutorials for SAT, ACT, GED, AP exams, and more. Includes skill-building exercises and study guides.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Gale Academic OneFile</span>
+                <p class="resource-description">Millions of peer-reviewed articles from scholarly journals across all disciplines for advanced research and citations.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Tutor.com</span>
+                <p class="resource-description">Live online tutoring in math, science, social studies, and English. Available daily from 2 PM to 10 PM Central Time.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🌳</span>
+            <h2>History & Genealogy</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">Ancestry Library Edition</span>
+                <p class="resource-description">The leading resource for family history research with billions of historical records.</p>
+                <div class="note">⚠️ <strong>Note:</strong> In-Library Use Only - Visit any HCPL branch to access</div>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Fold3</span>
+                <p class="resource-description">Discover U.S. military records, photos, and personal stories of those who served from the Revolutionary War to present day.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Newspapers.com (Texas Edition)</span>
+                <p class="resource-description">Search historical Texas newspapers dating back to the 1840s. Great for genealogy and local history research.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Digital Sanborn Maps</span>
+                <p class="resource-description">View detailed historical fire insurance maps of Texas towns and cities showing building layouts and land use from 1867-1970.</p>
+            </li>
+        </ul>
+    </section>
+
+    <section class="category">
+        <div class="category-header">
+            <span>🗣️</span>
+            <h2>Languages & Global News</h2>
+        </div>
+        <ul class="resource-list">
+            <li class="resource-item">
+                <span class="resource-name">Transparent Language Online</span>
+                <p class="resource-description">Learn over 110 different languages with interactive lessons, speech recognition, and grammar practice.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Mango Languages</span>
+                <p class="resource-description">Conversational language-learning courses in 70+ languages, plus specialty courses for professionals and travelers.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">LearningExpress (Recursos en Español)</span>
+                <p class="resource-description">Herramientas de aprendizaje y preparación para exámenes disponibles en español.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">PressReader</span>
+                <p class="resource-description">Read thousands of newspapers and magazines from around the world in 60+ languages on the day they're published.</p>
+            </li>
+            <li class="resource-item">
+                <span class="resource-name">Ballotpedia</span>
+                <p class="resource-description">Comprehensive, nonpartisan encyclopedia of American politics covering elections, candidates, and ballot measures.</p>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p><strong>Harris County Public Library</strong></p>
+        <p>Visit <a href="https://www.hcpl.net" class="footer-link" target="_blank">hcpl.net</a> to access all resources</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">Questions? Call 713-749-9000 or visit any HCPL branch</p>
+    </footer>
+</div>
+
+</body>
+</html>
