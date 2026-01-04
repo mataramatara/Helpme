@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Atlanta Reality Trivia Night</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-pink-500 to-purple-700 text-white">
+
+<div class="max-w-4xl mx-auto p-6">
+
+  <!-- HEADER -->
+  <h1 class="text-4xl font-bold text-center mb-2">🍑 Atlanta Reality Trivia Night 🍑</h1>
+  <p class="text-center text-lg opacity-90 mb-6">
+    Unofficial • Fan-Made • Hard Mode
+  </p>
+
+  <!-- SCOREBOARD -->
+  <div class="grid grid-cols-2 gap-4 mb-6">
+    <div class="bg-white text-gray-800 rounded-xl p-4 text-center">
+      <h2 class="font-semibold text-lg">Team Peach</h2>
+      <div id="score1" class="text-4xl font-bold">0</div>
+    </div>
+    <div class="bg-white text-gray-800 rounded-xl p-4 text-center">
+      <h2 class="font-semibold text-lg">Team Shade</h2>
+      <div id="score2" class="text-4xl font-bold">0</div>
+    </div>
+  </div>
+
+  <!-- ROUND INFO -->
+  <div class="text-center mb-4">
+    <p id="round-title" class="text-xl font-semibold">Round 1: Early Seasons Deep Cuts</p>
+    <p class="opacity-80">Question <span id="q-num">1</span> / <span id="q-total">20</span></p>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="bg-white text-gray-900 rounded-2xl p-6 shadow-xl fade-in">
+    <p id="question-text" class="text-2xl font-medium mb-6 text-center">
+      Question goes here
+    </p>
+
+    <div id="choices" class="grid grid-cols-1 gap-3 mb-6"></div>
+
+    <div class="text-center">
+      <button onclick="revealAnswer()"
+        class="bg-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-pink-600">
+        Reveal Answer
+      </button>
+    </div>
+
+    <div id="answer-box" class="hidden mt-6 text-center">
+      <p class="text-lg">
+        ✅ Correct Answer:
+        <span id="correct-answer" class="font-bold"></span>
+      </p>
+      <p id="extra-info" class="text-sm text-gray-600 mt-2"></p>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="flex justify-center gap-4 mt-6">
+    <button onclick="addPoint(1)" class="bg-white text-purple-700 px-4 py-2 rounded-lg font-semibold">
+      +1 Team Peach
+    </button>
+    <button onclick="addPoint(2)" class="bg-white text-purple-700 px-4 py-2 rounded-lg font-semibold">
+      +1 Team Shade
+    </button>
+  </div>
+
+  <div class="flex justify-center gap-4 mt-4">
+    <button onclick="prevQuestion()" class="opacity-80 hover:opacity-100">← Previous</button>
+    <button onclick="nextQuestion()" class="opacity-80 hover:opacity-100">Next →</button>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  // ROUND 1 — EARLY SEASONS
+  {
+    round: "Early Seasons Deep Cuts",
+    question: "Which cast member questioned the legitimacy of another’s fashion show timeline?",
+    choices: ["NeNe", "Kenya", "Shereé", "Cynthia"],
+    answer: "Shereé",
+    info: "An iconic early-season argument that became a franchise staple."
+  },
+  {
+    round: "Early Seasons Deep Cuts",
+    question: "Which housewife famously exited a reunion early after a heated exchange?",
+    choices: ["Kim", "NeNe", "Porsha", "Lisa"],
+    answer: "NeNe",
+    info: "A moment that set the tone for reunion drama going forward."
+  },
+
+  // ROUND 2 — ICONIC MOMENTS
+  {
+    round: "Iconic Moments",
+    question: "Which trip became infamous for physical altercations and sudden departures?",
+    choices: ["Miami", "South Africa", "Savannah", "Anguilla"],
+    answer: "South Africa",
+    info: "One of the most intense cast trips in franchise history."
+  },
+  {
+    round: "Iconic Moments",
+    question: "Which cast member brought an unexpected guest to an event, escalating tensions?",
+    choices: ["Kenya", "Porsha", "Marlo", "Kim"],
+    answer: "Kenya",
+    info: "This moment contributed to long-standing feuds."
+  },
+
+  // ROUND 3 — READS & REUNIONS
+  {
+    round: "Reads & Reunions",
+    question: "Who was frequently praised for delivering composed but cutting reunion commentary?",
+    choices: ["Cynthia", "NeNe", "Kandi", "Kenya"],
+    answer: "Kandi",
+    info: "Known for staying calm while making her point clear."
+  },
+  {
+    round: "Reads & Reunions",
+    question: "Which reunion featured multiple walk-offs by cast members?",
+    choices: ["Season 5", "Season 6", "Season 9", "Season 10"],
+    answer: "Season 6",
+    info: "One of the most chaotic reunions in the series."
+  },
+
+  // ROUND 4 — BUSINESSES & BRANDING
+  {
+    round: "Businesses & Branding",
+    question: "Which business venture caused tension due to perceived lack of support?",
+    choices: ["Music career", "Workout videos", "Restaurant group", "Haircare line"],
+    answer: "Restaurant group",
+    info: "The situation highlighted divisions among the cast."
+  },
+  {
+    round: "Businesses & Branding",
+    question: "Which cast member balanced music success while avoiding most on-screen conflict?",
+    choices: ["NeNe", "Kandi", "Porsha", "Cynthia"],
+    answer: "Kandi",
+    info: "Often cited as one of the most successful entrepreneurs on the show."
+  },
+
+  // ROUND 5 — FRIENDSHIPS & FALL-OUTS
+  {
+    round: "Friendships & Fall-Outs",
+    question: "Which friendship dissolved over loyalty concerns and off-camera conversations?",
+    choices: ["NeNe & Cynthia", "Kenya & Porsha", "Kandi & Phaedra", "Kim & Shereé"],
+    answer: "Kandi & Phaedra",
+    info: "One of the most emotional fallouts in the series."
+  },
+  {
+    round: "Friendships & Fall-Outs",
+    question: "Which housewife was often accused of playing both sides?",
+    choices: ["Cynthia", "Marlo", "Kenya", "Eva"],
+    answer: "Cynthia",
+    info: "This reputation followed her for several seasons."
+  }
+];
+
+let current = 0;
+let score1 = 0;
+let score2 = 0;
+
+document.getElementById("q-total").textContent = questions.length;
+
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById("round-title").textContent = `Round: ${q.round}`;
+  document.getElementById("q-num").textContent = current + 1;
+  document.getElementById("question-text").textContent = q.question;
+
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
+  q.choices.forEach(choice => {
+    const btn = document.createElement("div");
+    btn.className = "bg-gray-100 rounded-lg px-4 py-3 text-lg";
+    btn.textContent = choice;
+    choicesDiv.appendChild(btn);
+  });
+
+  document.getElementById("answer-box").classList.add("hidden");
+}
+
+function revealAnswer() {
+  document.getElementById("correct-answer").textContent = questions[current].answer;
+  document.getElementById("extra-info").textContent = questions[current].info;
+  document.getElementById("answer-box").classList.remove("hidden");
+}
+
+function nextQuestion() {
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+}
+
+function addPoint(team) {
+  if (team === 1) {
+    score1++;
+    document.getElementById("score1").textContent = score1;
+  } else {
+    score2++;
+    document.getElementById("score2").textContent = score2;
+  }
+}
+
+renderQuestion();
+</script>
+
+</body>
+</html>
